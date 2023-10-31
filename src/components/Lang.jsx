@@ -1,3 +1,5 @@
+import styles from "./Lang.module.css";
+
 const Lang = ({ ln }) => {
   // const cStyle = {
   //   color: "black",
@@ -5,7 +7,7 @@ const Lang = ({ ln }) => {
   //   backgroundColor: "maroon",
   // };
 
-  return <p className="bg-blue-700 p-3 m-3 border-2 border-red-600">{ln}</p>;
+  return <p className={styles.p}>{ln}</p>;
 };
 
 export default Lang;

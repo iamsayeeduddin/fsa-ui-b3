@@ -1,5 +1,5 @@
 // import Home from "./components/Home";
-import "./App.css";
+// import "./App.css";
 import { Route, Routes, Link } from "react-router-dom";
 // import Person from "./components/Person";
 import UserList from "./components/UserList";
