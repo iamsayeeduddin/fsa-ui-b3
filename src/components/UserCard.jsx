@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../userContext";
 
 const UserCard = ({ usr, key }) => {
+  const user = useContext(UserContext);
   return (
     <div key={key} className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div className="flex justify-end px-4 pt-4">
@@ -53,7 +56,7 @@ const UserCard = ({ usr, key }) => {
             href={usr.html_url}
             className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Github Profile
+            Github Profile {user.a}
           </a>
           <Link
             to={`/users/${usr.login}`}
@@ -61,6 +64,7 @@ const UserCard = ({ usr, key }) => {
           >
             More Details
           </Link>
+          <button onClick={() => user.setA(user.a + 1)}>+</button>
         </div>
       </div>
     </div>
