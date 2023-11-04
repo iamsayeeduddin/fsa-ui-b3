@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 const EForm = () => {
@@ -9,16 +10,24 @@ const EForm = () => {
   });
 
   const handleInput = (e) => {
-    e.target.name === "file"
-      ? setState((prev) => ({ ...prev, file: e.target.files[0] }))
-      : setState((prev) => {
-          return { ...prev, [e.target.name]: e.target.value };
-        });
+    e.target.name === "file" ? setState((prev) => ({ ...prev, file: e.target.files[0] })) : setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(state);
+
+    const fd = new FormData();
+    console.log(fd);
+    for (let key in state) {
+      fd.append(key, state[key]);
+    }
+
+    axios
+      .post("http://localhost:5000/form", fd)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => console.error(e));
   };
 
   return (
@@ -43,7 +52,7 @@ const EForm = () => {
           </label>
         </div>
         <div className="relative z-0 w-full mb-6 group">
-          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">
+          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="file_input">
             Upload file
           </label>
           <input
