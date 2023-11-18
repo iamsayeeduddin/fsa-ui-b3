@@ -1,0 +1,38 @@
+pipeline{
+    agent any
+    
+    stages{
+        stage('Checkout'){
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Install Dependencies'){
+            steps{
+                script{
+                def nodejsHome = tool 'NodeJS'
+                env.PATH = "${nodejsHome}/bin:${env.PATH}"
+                sh 'npm install'
+                }
+            }
+        }
+        
+        stage('Build'){
+            steps {
+                script {
+                    sh 'npm run build'
+                }
+            }
+        }
+        
+        stage('Run Application') {
+            steps{
+                script{
+                    sh 'npm run preview &' sleep 10
+                }
+            }
+        }
+        
+    }
+}
