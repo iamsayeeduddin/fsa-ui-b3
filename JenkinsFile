@@ -11,8 +11,8 @@ pipeline{
         stage('Install Dependencies'){
             steps{
                 script{
-                def nodejsHome = tool 'NodeJS'
-                env.PATH = "${nodejsHome}/bin:${env.PATH}"
+                // def nodejsHome = tool 'NodeJS'
+                // env.PATH = "${nodejsHome}/bin:${env.PATH}"
                 sh 'npm install'
                 }
             }
